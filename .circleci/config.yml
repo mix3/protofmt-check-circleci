@@ -1,22 +1,23 @@
 version: 2
 jobs:
   build:
-    machine: true
+    docker:
+      - image: alpine:latest
     steps:
       # install prototool
       - restore_cache:
           keys:
             - prototool
-      - run: curl -sSL https://github.com/uber/prototool/releases/download/v1.3.0/prototool-$(uname -s)-$(uname -m).tar.gz | sudo tar -C /usr/local --strip-components 1 -xz
+      - run: wget -q -O - https://github.com/uber/prototool/releases/download/v1.3.0/prototool-$(uname -s)-$(uname -m).tar.gz | tar -C /usr/local --strip-components 1 -xz
       - save_cache:
           key: prototool
           paths:
             - /usr/local/bin/prototool
 
-      # install clang-format
-      - run: sudo apt-get install -y clang-format
+      # install etc
+      - run: apk add --no-cache git ca-certificates libc6-compat clang bash
 
-      # - checkout
+      - checkout
 
       - run: prototool compile
       - run: ./protofmt-diff
