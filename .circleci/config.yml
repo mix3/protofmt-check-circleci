@@ -2,10 +2,13 @@ version: 2
 jobs:
   build:
     docker:
-      - image: lockblox/prototool
+      - image: apline:latest
+    environment:
+      PROTOTOOL_VERSION: 1.3.0
     steps:
       # install etc
-      - run: apk add --no-cache git clang bash
+      - run: apk add --no-cache git curl ca-certificates libc6-compat clang bash
+      - run: curl -sSL https://github.com/uber/prototool/releases/download/v$PROTOTOOL_VERSION/prototool-Linux-x86_64 -o /bin/prototool && chmod +x /bin/prototool
 
       - checkout
 
