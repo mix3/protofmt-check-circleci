@@ -5,6 +5,7 @@ jobs:
       - image: alpine:latest
     steps:
       # install prototool
+      - run: apk add --no-cache ca-certificates
       - restore_cache:
           keys:
             - prototool
@@ -15,7 +16,7 @@ jobs:
             - /usr/local/bin/prototool
 
       # install etc
-      - run: apk add --no-cache git ca-certificates libc6-compat clang bash
+      - run: apk add --no-cache git libc6-compat clang bash
 
       - checkout
 
