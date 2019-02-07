@@ -8,17 +8,16 @@ service Hoge {
 }
 
 message HogeFugaRequest {
-    int32 hoge = 1; // hoge
+    int32 hoge = 1;      // hoge
 }
 
 message HogeFugaResponse {
-    string huga = 1; // huga
+    string huga     = 1; // huga
 }
 
 message HogePiyoRequest {
-    int32 hoge = 1; // hoge
+    int32      hoge = 1; // hoge
 }
 
-message HogePiyoResponse {
-    string piyo = 1; // piyo
+message HogePiyoResponse { string piyo = 1; // piyo
 }
