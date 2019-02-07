@@ -8,7 +8,7 @@ service Hoge {
 }
 
 message HogeFugaRequest {
-    int32 hoge = 1;     // hoge
+    int32 hoge = 1; // hoge
 }
 
 message HogeFugaResponse {
