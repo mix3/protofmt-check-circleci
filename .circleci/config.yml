@@ -2,21 +2,10 @@ version: 2
 jobs:
   build:
     docker:
-      - image: alpine:latest
+      - image: lockblox/prototool
     steps:
-      # install prototool
-      - run: apk add --no-cache ca-certificates
-      - restore_cache:
-          keys:
-            - prototool
-      - run: wget -q -O - https://github.com/uber/prototool/releases/download/v1.3.0/prototool-$(uname -s)-$(uname -m).tar.gz | tar -C /usr/local --strip-components 1 -xz
-      - save_cache:
-          key: prototool
-          paths:
-            - /usr/local/bin/prototool
-
       # install etc
-      - run: apk add --no-cache git libc6-compat clang bash
+      - run: apk add --no-cache git clang bash
 
       - checkout
 
