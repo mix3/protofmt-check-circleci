@@ -1,0 +1,22 @@
+version: 2
+jobs:
+  build:
+    machine: true
+    steps:
+      # install prototool
+      - restore_cache:
+          keys:
+            - prototool
+      - run: curl -sSL https://github.com/uber/prototool/releases/download/v1.3.0/prototool-$(uname -s)-$(uname -m).tar.gz | sudo tar -C /usr/local --strip-components 1 -xz
+      - save_cache:
+          key: prototool
+          paths:
+            - /usr/local/bin/prototool
+
+      # install clang-format
+      - run: sudo apt-get install -y clang-format
+
+      # - checkout
+
+      - run: prototool compile
+      - run: ./protofmt-diff

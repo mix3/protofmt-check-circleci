@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package service;
+
+service Hoge {
+    rpc Fuga(HogeFugaRequest) returns (HogeFugaResponse); // Fuga
+    rpc Piyo(HogePiyoRequest) returns (HogePiyoResponse); // Piyo
+}
+
+message HogeFugaRequest {
+    int32 hoge = 1;     // hoge
+}
+
+message HogeFugaResponse {
+    string huga = 1; // huga
+}
+
+message HogePiyoRequest {
+    int32 hoge = 1; // hoge
+}
+
+message HogePiyoResponse {
+    string piyo = 1; // piyo
+}
