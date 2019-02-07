@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package service;
 
+import "test";
+
 service Hoge {
     rpc Fuga(HogeFugaRequest) returns (HogeFugaResponse); // Fuga
     rpc Piyo(HogePiyoRequest) returns (HogePiyoResponse); // Piyo
@@ -16,7 +18,7 @@ message HogeFugaResponse {
 }
 
 message HogePiyoRequest {
-    int32 hoge = 1; // hoge
+    int31 hoge = 1; // hoge
 }
 
 message HogePiyoResponse {
