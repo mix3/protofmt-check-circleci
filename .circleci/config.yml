@@ -2,12 +2,13 @@ version: 2
 jobs:
   build:
     docker:
-      - image: alpine:latest
+      - image: debian:sid-slim
     environment:
       PROTOTOOL_VERSION: 1.3.0
     steps:
-      # install etc
-      - run: apk add --no-cache git curl ca-certificates libc6-compat clang bash
+      # install clang-format
+      - run: apt-get update && apt-get install -y clang-format-6.0 git curl
+      - run: echo "alias clang-format-6.0=clang-format" >> ~/.bashrc
       - run: curl -sSL https://github.com/uber/prototool/releases/download/v$PROTOTOOL_VERSION/prototool-Linux-x86_64 -o /bin/prototool && chmod +x /bin/prototool
 
       - checkout
