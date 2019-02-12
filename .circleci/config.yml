@@ -19,5 +19,5 @@ jobs:
       - run: prototool compile
       - run: find ./proto -type f -name *.proto -exec clang-format-6.0 -i {} \;
       - run: git add -A
-      - run: git diff-index --quiet HEAD || git commit -m '[ci skip] apply clang-format by circleci'
+      - run: git diff-index --quiet HEAD || git commit -m 'apply clang-format by circleci'
       - run: git push origin ${CIRCLE_BRANCH}
