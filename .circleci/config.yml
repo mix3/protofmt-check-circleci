@@ -8,7 +8,7 @@ jobs:
     steps:
       # install clang-format
       - run: apt-get update && apt-get install -y clang-format-6.0 git curl
-      - run: echo "alias clang-format-6.0=clang-format" >> ~/.bashrc
+      - run: echo "alias clang-format=clang-format-6.0" >> ~/.bashrc
       - run: curl -sSL https://github.com/uber/prototool/releases/download/v$PROTOTOOL_VERSION/prototool-Linux-x86_64 -o /bin/prototool && chmod +x /bin/prototool
 
       # git config
