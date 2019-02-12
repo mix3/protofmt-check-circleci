@@ -8,10 +8,16 @@ jobs:
     steps:
       # install clang-format
       - run: apt-get update && apt-get install -y clang-format-6.0 git curl
-      - run: echo "alias clang-format-6.0=clang-format" >> ~/.bashrc
       - run: curl -sSL https://github.com/uber/prototool/releases/download/v$PROTOTOOL_VERSION/prototool-Linux-x86_64 -o /bin/prototool && chmod +x /bin/prototool
+
+      # git config
+      - run: git config --global user.name "circleci"
+      - run: git config --global user.email "<>"
 
       - checkout
 
       - run: prototool compile
-      - run: ./protofmt-diff
+      - run: find ./proto -type f -name *.proto -exec clang-format-6.0 -i {} \;
+      - run: git add -A
+      - run: git diff-index --quiet HEAD || git commit -m 'apply clang-format by circleci'
+      - run: git push origin ${CIRCLE_BRANCH}
